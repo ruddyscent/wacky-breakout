@@ -5,40 +5,38 @@ using UnityEngine;
 public class BlockSpawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject spriteBlock0, spriteBlock1, spriteBlock2, spriteBlock3;
+    GameObject spriteBlock;
+
     float width, height;
-    const float horizontalGap = 0.1f, verticalGap = 0.1f;
+    const float horizontalGap = 0.5f;
+    const float verticalGap = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject tmpBlock = Instantiate(spriteBlock0);
-        width = tmpBlock.GetComponent<BoxCollider2D>().size.x;
+        GameObject tmpBlock = Instantiate(spriteBlock);
+        width = 2 * tmpBlock.GetComponent<BoxCollider2D>().size.x;
         height = tmpBlock.GetComponent<BoxCollider2D>().size.y;
         Destroy(tmpBlock);
 
-        float x = ScreenUtils.ScreenLeft + horizontalGap + width / 2;
-        float y = 0;
-        while (x < ScreenUtils.ScreenRight - horizontalGap)
+        float x = 0;
+        float y = verticalGap;
+        for (int i = 0; i < 4; i++)
         {
-            int selection = Random.Range(0, 4);
-            GameObject block;
-            switch (selection)
+            GameObject go;
+            x = i * width + horizontalGap;
+            if (i == 0)
             {
-                case 0:
-                    block = Instantiate(spriteBlock0, new Vector2(x, y), Quaternion.identity);
-                    break;
-                case 1:
-                    block = Instantiate(spriteBlock1, new Vector2(x, y), Quaternion.identity);
-                    break;
-                case 2:
-                    block = Instantiate(spriteBlock2, new Vector2(x, y), Quaternion.identity);
-                    break;
-                case 3:
-                    block = Instantiate(spriteBlock3, new Vector2(x, y), Quaternion.identity);
-                    break;
+                go = Instantiate(spriteBlock, new Vector2(x, y), Quaternion.identity);
+                go.GetComponent<Renderer>().material.color = Random.ColorHSV();
             }
-            x += 2 * width + horizontalGap;
+            else
+            {
+                go = Instantiate(spriteBlock, new Vector2(x, y), Quaternion.identity);
+                go.GetComponent<Renderer>().material.color = Random.ColorHSV();
+                go = Instantiate(spriteBlock, new Vector2(-x, y), Quaternion.identity);
+                go.GetComponent<Renderer>().material.color = Random.ColorHSV();
+            }
         }
     }
 
