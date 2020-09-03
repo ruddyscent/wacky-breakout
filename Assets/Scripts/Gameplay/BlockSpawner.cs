@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour
 {
@@ -8,8 +6,8 @@ public class BlockSpawner : MonoBehaviour
     GameObject spriteBlock;
 
     float width, height;
-    const float horizontalGap = 0.5f;
-    const float verticalGap = 0.5f;
+    const float horizontalGap = 0.05f;
+    const float verticalGap = 0.05f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +22,7 @@ public class BlockSpawner : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             GameObject go;
-            x = i * width + horizontalGap;
+            
             if (i == 0)
             {
                 go = Instantiate(spriteBlock, new Vector2(x, y), Quaternion.identity);
@@ -32,6 +30,7 @@ public class BlockSpawner : MonoBehaviour
             }
             else
             {
+                x = i * (width + horizontalGap);
                 go = Instantiate(spriteBlock, new Vector2(x, y), Quaternion.identity);
                 go.GetComponent<Renderer>().material.color = Random.ColorHSV();
                 go = Instantiate(spriteBlock, new Vector2(-x, y), Quaternion.identity);
