@@ -25,6 +25,8 @@ public class Ball : MonoBehaviour
     {
         if (timer.Finished)
         {
+            Camera m_MainCamera = Camera.main;
+            m_MainCamera.GetComponent<BallSpawner>().SpawnBall();
             Destroy(gameObject);
         }
     }
