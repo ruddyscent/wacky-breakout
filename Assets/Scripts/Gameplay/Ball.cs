@@ -5,6 +5,7 @@ public class Ball : MonoBehaviour
     #region Fields
     Rigidbody2D rb2D = null;
     Timer timer = null;
+    Timer pauseTimer = null;
     #endregion
 
     // Start is called before the first frame update
@@ -15,15 +16,24 @@ public class Ball : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         //rb2D.velocity = magnitude * direction;
 
-        timer = gameObject.AddComponent<Timer>();
-        timer.Duration = ConfigurationUtils.BallLifetime;
-        timer.Run();
+        pauseTimer = gameObject.AddComponent<Timer>();
+        pauseTimer.Duration = ConfigurationUtils.BallLifetime;
+        pauseTimer.Run();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer.Finished)
+        if (pauseTimer.Finished && timer == null)
+        {
+            SetDirection(new Vector2(0, 1));
+            
+            timer = gameObject.AddComponent<Timer>();
+            timer.Duration = ConfigurationUtils.BallLifetime;
+            timer.Run();
+        }
+
+        if (timer != null && timer.Finished)
         {
             Camera m_MainCamera = Camera.main;
             m_MainCamera.GetComponent<BallSpawner>().SpawnBall();

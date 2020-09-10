@@ -16,7 +16,9 @@ public class ConfigurationData
     // configuration data
     float paddleMoveUnitsPerSecond = 10;
     float ballImpulseForce = 200;
-    float ballLifetime = 10;
+    float ballLifeTime = 10;
+    float ballPauseTime = 1;
+
     #endregion
 
     #region Properties
@@ -39,9 +41,14 @@ public class ConfigurationData
         get { return ballImpulseForce; }    
     }
 
-    public float BallLifetime
+    public float BallLifeTime
     {
-        get { return ballLifetime; }    
+        get { return ballLifeTime; }    
+    }
+
+    public float BallPauseTime
+    {
+        get { return ballPauseTime; }    
     }
 
     #endregion
@@ -84,7 +91,6 @@ public class ConfigurationData
         }
     }
 
-
     /// <summary>
     /// Sets the configuration data fields from the provided
     /// csv string
@@ -99,7 +105,7 @@ public class ConfigurationData
         string[] values = csvValues.Split(','); 
         paddleMoveUnitsPerSecond = float.Parse(values[0]);
         ballImpulseForce = float.Parse(values[1]);
-        ballLifetime = float.Parse(values[2]);
+        ballLifeTime = float.Parse(values[2]);
     }
 
     #endregion

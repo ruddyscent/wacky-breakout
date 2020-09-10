@@ -29,7 +29,12 @@ public static class ConfigurationUtils
 
     public static float BallLifetime
     {
-        get { return configurationData.BallLifetime; }
+        get { return configurationData.BallLifeTime; }
+    }
+
+    public static float BallPausetime
+    {
+        get { return configurationData.BallPauseTime; }
     }
 
     #endregion
