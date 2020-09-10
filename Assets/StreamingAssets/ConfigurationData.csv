@@ -1,2 +1,2 @@
-PaddleMoveUnitsPerSecond,BallImpulseForce,BallLifetime
-10,200,10
+PaddleMoveUnitsPerSecond,BallImpulseForce,BallPauseTime
+10,5,1
