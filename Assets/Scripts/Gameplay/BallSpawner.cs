@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallSpawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject prefabBall;
+    GameObject prefabBall = null;
 
     // Start is called before the first frame update
     void Start()
