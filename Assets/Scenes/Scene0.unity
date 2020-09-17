@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 438643353}
   m_Layer: 5
   m_Name: Score
-  m_TagString: Untagged
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +146,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438643351}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -356,7 +356,6 @@ GameObject:
   - component: {fileID: 519420035}
   - component: {fileID: 519420036}
   - component: {fileID: 519420037}
-  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -372,20 +371,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2081f147c5c4e7741bf014edf51c2a6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  ballsLeftText: {fileID: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -467,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305b33bb847f2d249bfea96d135b2e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteBlock: {fileID: 4376243711540471185, guid: 288a04e6582d5f44199a0f6c81dab824,
+  spriteBlock: {fileID: 3741166402977006098, guid: 68b5d1bbc55e29d428c2326ea4f90ead,
     type: 3}
 --- !u!114 &519420037
 MonoBehaviour:
@@ -498,7 +483,7 @@ GameObject:
   - component: {fileID: 637044025}
   m_Layer: 5
   m_Name: HUD
-  m_TagString: Untagged
+  m_TagString: HUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -611,7 +596,7 @@ GameObject:
   - component: {fileID: 1293167326}
   m_Layer: 5
   m_Name: BallsLeft
-  m_TagString: Untagged
+  m_TagString: BallsLeft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,7 +608,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293167324}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

@@ -4,30 +4,31 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     [SerializeField]
-    Text scoreText;
+    Text scoreText = null;
     [SerializeField]
-    Text ballsLeftText;
-    int score;
+    Text ballsLeftText = null;
+    int score = 0;
     int ballsLeft;
-    const string ScorePrefix = "Score: ";
-    const string BallsLeftPrefix = "Balls: ";
+    const string scorePrefix = "Score: ";
+    const string ballsLeftPrefix = "Balls: ";
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = ScorePrefix + score.ToString();
-        ballsLeftText.text = BallsLeftPrefix + ballsLeft.ToString();
+        ballsLeft = ConfigurationUtils.GivenNumberOfBalls;
+        scoreText.text = scorePrefix + score.ToString();
+        ballsLeftText.text = ballsLeftPrefix + ballsLeft.ToString();
     }
 
     public void AddPoints(int points)
     {
         score += points;
-        scoreText.text = ScorePrefix + score.ToString();
+        scoreText.text = scorePrefix + score.ToString();
     }
 
     public void LooseBall()
     {
         ballsLeft -= 1;
-        ballsLeftText.text = BallsLeftPrefix + ballsLeft.ToString();
+        ballsLeftText.text = ballsLeftPrefix + ballsLeft.ToString();
     }
 }

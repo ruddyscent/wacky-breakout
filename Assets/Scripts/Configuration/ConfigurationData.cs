@@ -17,6 +17,8 @@ public class ConfigurationData
     float paddleMoveUnitsPerSecond = 10;
     float ballImpulseForce = 200;
     float ballPauseTime = 1;
+    int givenNumberOfBalls = 3;
+    int standardBlockPiont = 1;
 
     #endregion
 
@@ -43,6 +45,16 @@ public class ConfigurationData
     public float BallPauseTime
     {
         get { return ballPauseTime; }    
+    }
+
+    public int GivenNumberOfBalls
+    {
+        get { return givenNumberOfBalls; }    
+    }
+
+    public int StandardBlockPiont
+    {
+        get { return standardBlockPiont; }    
     }
 
     #endregion
@@ -100,6 +112,8 @@ public class ConfigurationData
         paddleMoveUnitsPerSecond = float.Parse(values[0]);
         ballImpulseForce = float.Parse(values[1]);
         ballPauseTime = float.Parse(values[2]);
+        givenNumberOfBalls = int.Parse(values[3]);
+        standardBlockPiont = int.Parse(values[4]);
     }
 
     #endregion

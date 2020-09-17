@@ -32,6 +32,16 @@ public static class ConfigurationUtils
         get { return configurationData.BallPauseTime; }
     }
 
+    public static int GivenNumberOfBalls
+    {
+        get { return configurationData.GivenNumberOfBalls; }
+    }
+
+    public static int StandardBlockPoint
+    {
+        get { return configurationData.StandardBlockPiont; }
+    }
+
     #endregion
 
     /// <summary>
