@@ -12,12 +12,6 @@ public class Block : MonoBehaviour
     protected virtual  void Start()
     {
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
-        // hud = GameObject.FindGameObjectsWithTag("HUD")[0];
-        // hud = GetComponent<HUD>();
-        // if (hud == null)
-        //     print("DEBUG: null");
-        // else
-        //     print("DEBUG: not null");
     }
 
     // Update is called once per frame

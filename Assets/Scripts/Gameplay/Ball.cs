@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
     Rigidbody2D rb2D = null;
     BoxCollider2D bc2D = null;
     Timer pauseTimer = null;
+    HUD hud = null;
     #endregion
 
     // Start is called before the first frame update
@@ -15,7 +16,7 @@ public class Ball : MonoBehaviour
         //Vector2 direction = new Vector2(Mathf.Cos(20 * Mathf.PI / 180), Mathf.Sin(20 * Mathf.PI / 180));
         rb2D = GetComponent<Rigidbody2D>();
         bc2D = GetComponent<BoxCollider2D>();
-        //rb2D.velocity = magnitude * direction;
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
 
         pauseTimer = gameObject.AddComponent<Timer>();
         pauseTimer.Duration = ConfigurationUtils.BallPauseTime;
@@ -36,8 +37,14 @@ public class Ball : MonoBehaviour
 
         if (OnBecameInvisible())
         {
-            Camera m_MainCamera = Camera.main;
-            m_MainCamera.GetComponent<BallSpawner>().SpawnBall();
+            hud.LooseBall();
+
+            if (hud.BallsLeft > 0)
+            {
+                Camera m_MainCamera = Camera.main;
+                m_MainCamera.GetComponent<BallSpawner>().SpawnBall();
+            }
+
             Destroy(gameObject);
         }
     }

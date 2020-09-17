@@ -12,6 +12,15 @@ public class HUD : MonoBehaviour
     const string scorePrefix = "Score: ";
     const string ballsLeftPrefix = "Balls: ";
 
+    #region Properties
+    
+    public int BallsLeft
+    {
+        get { return ballsLeft; }
+    }
+
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
