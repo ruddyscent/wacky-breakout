@@ -21,6 +21,6 @@ public class BallSpawner : MonoBehaviour
 
     public void SpawnBall()
     {
-        Instantiate(prefabBall, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(prefabBall, new Vector3(0, -1, 0), Quaternion.identity);
     }
 }
