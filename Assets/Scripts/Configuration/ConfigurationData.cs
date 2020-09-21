@@ -19,6 +19,12 @@ public class ConfigurationData
     float ballPauseTime = 1;
     int givenNumberOfBalls = 3;
     int standardBlockPiont = 1;
+    int bonusBlockPiont = 1;
+    float freezingRatio = -0.5f;
+    float freezingTime = 5f;
+    
+    float speedupRatio = 0.5f;
+    float speedupTime = 5f;
 
     #endregion
 
@@ -57,6 +63,30 @@ public class ConfigurationData
         get { return standardBlockPiont; }    
     }
 
+    public int BonusBlockPiont
+    {
+        get { return bonusBlockPiont; }    
+    }
+
+    public float FreezingRatio
+    {
+        get { return freezingRatio; }
+    }
+
+    public float FreezingTime
+    {
+        get { return freezingTime; }
+    }
+
+    public float SpeedupRatio
+    {
+        get { return speedupRatio; }
+    }
+
+    public float SpeedupTime
+    {
+        get { return speedupTime; }
+    }
     #endregion
 
     #region Constructor
@@ -114,6 +144,11 @@ public class ConfigurationData
         ballPauseTime = float.Parse(values[2]);
         givenNumberOfBalls = int.Parse(values[3]);
         standardBlockPiont = int.Parse(values[4]);
+        bonusBlockPiont = int.Parse(values[5]);
+        freezingRatio = float.Parse(values[6]);
+        freezingTime = float.Parse(values[7]);
+        speedupRatio = float.Parse(values[8]);
+        speedupTime = float.Parse(values[9]);
     }
 
     #endregion

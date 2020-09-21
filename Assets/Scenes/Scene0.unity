@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305b33bb847f2d249bfea96d135b2e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteBlock: {fileID: 3741166402977006098, guid: 68b5d1bbc55e29d428c2326ea4f90ead,
+  spriteBlock: {fileID: 5972526805734739114, guid: 7c6896e43991dba47959752564a2d175,
     type: 3}
 --- !u!114 &519420037
 MonoBehaviour:

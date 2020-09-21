@@ -42,6 +42,30 @@ public static class ConfigurationUtils
         get { return configurationData.StandardBlockPiont; }
     }
 
+    public static int BonusBlockPoint
+    {
+        get { return configurationData.BonusBlockPiont; }
+    }
+
+    public static float FreezingRatio
+    {
+        get { return configurationData.FreezingRatio; }
+    }
+
+    public static float FreezingTime
+    {
+        get { return configurationData.FreezingTime; }
+    }
+
+    public static float SpeedupRatio
+    {
+        get { return configurationData.SpeedupRatio; }
+    }
+
+    public static float SpeedupTime
+    {
+        get { return configurationData.SpeedupTime; }
+    }
     #endregion
 
     /// <summary>

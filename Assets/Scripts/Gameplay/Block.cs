@@ -9,7 +9,7 @@ public class Block : MonoBehaviour
     HUD hud = null; 
 
     // Start is called before the first frame update
-    protected virtual  void Start()
+    protected virtual void Start()
     {
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
     }
@@ -20,7 +20,7 @@ public class Block : MonoBehaviour
         
     }
 
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
         {

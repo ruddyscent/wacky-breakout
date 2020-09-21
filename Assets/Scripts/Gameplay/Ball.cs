@@ -7,6 +7,9 @@ public class Ball : MonoBehaviour
     BoxCollider2D bc2D = null;
     Timer pauseTimer = null;
     HUD hud = null;
+    Timer speedEffectTimer = null;
+    float speedEffectRatio = 0f;
+    float originalSpeed = 0;
     #endregion
 
     // Start is called before the first frame update
@@ -33,6 +36,7 @@ public class Ball : MonoBehaviour
             rb2D.AddForce(ConfigurationUtils.BallImpulseForce * direction, ForceMode2D.Impulse);
             Destroy(pauseTimer);
             pauseTimer = null;
+            originalSpeed = rb2D.velocity.magnitude;
         }
 
         if (OnBecameInvisible())
@@ -47,6 +51,26 @@ public class Ball : MonoBehaviour
 
             Destroy(gameObject);
         }
+
+        if (speedEffectTimer != null && speedEffectTimer.Finished)
+        {
+            rb2D.velocity = originalSpeed * rb2D.velocity.normalized;
+            speedEffectTimer = null;
+        }
+    }
+
+    public void SpeedEffect(float ratio, float seconds)
+    {
+        if (speedEffectRatio != ratio)
+        {
+            rb2D.velocity = originalSpeed * rb2D.velocity.normalized;
+            rb2D.velocity = (1 + ratio) * rb2D.velocity;
+            speedEffectRatio = ratio;
+        }
+
+        speedEffectTimer = gameObject.AddComponent<Timer>();
+        speedEffectTimer.Duration = seconds;
+        speedEffectTimer.Run();
     }
 
     public void SetDirection(Vector2 direction)
