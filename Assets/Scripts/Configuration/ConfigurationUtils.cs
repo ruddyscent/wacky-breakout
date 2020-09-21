@@ -66,6 +66,21 @@ public static class ConfigurationUtils
     {
         get { return configurationData.SpeedupTime; }
     }
+
+    public static float BonusBlockFrequency
+    {
+        get { return configurationData.BonusBlockFrequency; }
+    }
+
+        public static float FreezerBlockFrequency
+    {
+        get { return configurationData.FreezerBlockFrequency; }
+    }
+
+        public static float SpeedupBlockFrequency
+    {
+        get { return configurationData.SpeedupBlockFrequency; }
+    }
     #endregion
 
     /// <summary>

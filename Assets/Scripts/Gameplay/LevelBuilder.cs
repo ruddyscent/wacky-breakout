@@ -2,9 +2,16 @@
 
 public class LevelBuilder : MonoBehaviour
 {
+    // [SerializeField]
+    // GameObject spriteBlock = null;
     [SerializeField]
-    GameObject spriteBlock = null;
-
+    GameObject standardBlock = null;
+    [SerializeField]
+    GameObject bonusBlock = null;
+    [SerializeField]
+    GameObject speedupBlock = null;
+    [SerializeField]
+    GameObject freezerBlock = null;
     float width, height;
     const float horizontalGap = 0.05f;
     const float verticalGap = 0.05f;
@@ -12,7 +19,7 @@ public class LevelBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject tmpBlock = Instantiate(spriteBlock);
+        GameObject tmpBlock = Instantiate(standardBlock);
         width = 2 * tmpBlock.GetComponent<BoxCollider2D>().size.x;
         height = 0.5f * tmpBlock.GetComponent<BoxCollider2D>().size.y;
         Destroy(tmpBlock);
@@ -24,21 +31,25 @@ public class LevelBuilder : MonoBehaviour
 
             for (int i = 0; i < 4; i++)
             {
-                GameObject go;
-                float x = 0;                
+                float x = 0;
                 
                 x = (i + 0.5f) * (width + horizontalGap);
-                go = Instantiate(spriteBlock, new Vector2(x, y), Quaternion.identity);
-                go.GetComponent<Renderer>().material.color = Random.ColorHSV();
-                go = Instantiate(spriteBlock, new Vector2(-x, y), Quaternion.identity);
-                go.GetComponent<Renderer>().material.color = Random.ColorHSV();
+                PlaceBlock(new Vector2(x, y));
+                PlaceBlock(new Vector2(-x, y));
             }
         } 
     }
 
-    // Update is called once per frame
-    void Update()
+    void PlaceBlock(Vector2 position)
     {
-        
+        float r = Random.Range(0f, 1f);
+        if (r <= ConfigurationUtils.BonusBlockFrequency)
+            Instantiate(bonusBlock, position, Quaternion.identity);
+        else if (r <= ConfigurationUtils.BonusBlockFrequency + ConfigurationUtils.SpeedupBlockFrequency)
+            Instantiate(speedupBlock, position, Quaternion.identity);
+        else if (r <= ConfigurationUtils.BonusBlockFrequency + ConfigurationUtils.SpeedupBlockFrequency + ConfigurationUtils.SpeedupBlockFrequency)
+            Instantiate(freezerBlock, position, Quaternion.identity);
+        else
+            Instantiate(standardBlock, position, Quaternion.identity);
     }
 }

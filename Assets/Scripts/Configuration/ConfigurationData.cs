@@ -25,6 +25,9 @@ public class ConfigurationData
     
     float speedupRatio = 0.5f;
     float speedupTime = 5f;
+    float bonusBlockFrequency = 0.1f;
+    float freezerBlockFrequency = 0.1f;
+    float speedupBlockFrequency = 0.1f;
 
     #endregion
 
@@ -86,6 +89,21 @@ public class ConfigurationData
     public float SpeedupTime
     {
         get { return speedupTime; }
+    }
+
+    public float BonusBlockFrequency
+    {
+        get { return bonusBlockFrequency; }
+    }
+
+    public float SpeedupBlockFrequency
+    {
+        get { return speedupBlockFrequency; }
+    }
+
+    public float FreezerBlockFrequency
+    {
+        get { return freezerBlockFrequency; }
     }
     #endregion
 
@@ -149,6 +167,9 @@ public class ConfigurationData
         freezingTime = float.Parse(values[7]);
         speedupRatio = float.Parse(values[8]);
         speedupTime = float.Parse(values[9]);
+        bonusBlockFrequency = float.Parse(values[10]);
+        freezerBlockFrequency = float.Parse(values[11]);
+        speedupBlockFrequency = float.Parse(values[12]);
     }
 
     #endregion
