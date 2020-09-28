@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour
     BoxCollider2D bc2D = null;
     Timer pauseTimer = null;
     HUD hud = null;
-    Timer speedEffectTimer = null;
+    Timer effectTimer = null;
     float speedEffectRatio = 0f;
     float originalSpeed = 0;
     #endregion
@@ -52,14 +52,18 @@ public class Ball : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (speedEffectTimer != null && speedEffectTimer.Finished)
+        if (effectTimer != null && effectTimer.Finished)
         {
             rb2D.velocity = originalSpeed * rb2D.velocity.normalized;
-            speedEffectTimer = null;
+            effectTimer = null;
         }
     }
 
-    public void SpeedEffect(float ratio, float seconds)
+    public virtual void Effect(float seconds) 
+    {
+    }
+
+    public virtual void Effect(float ratio, float seconds)
     {
         if (speedEffectRatio != ratio)
         {
@@ -68,9 +72,9 @@ public class Ball : MonoBehaviour
             speedEffectRatio = ratio;
         }
 
-        speedEffectTimer = gameObject.AddComponent<Timer>();
-        speedEffectTimer.Duration = seconds;
-        speedEffectTimer.Run();
+        effectTimer = gameObject.AddComponent<Timer>();
+        effectTimer.Duration = seconds;
+        effectTimer.Run();
     }
 
     public void SetDirection(Vector2 direction)

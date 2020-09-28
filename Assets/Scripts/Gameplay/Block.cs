@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class Block : MonoBehaviour
 {
     protected int points = 0;
-    HUD hud = null; 
+    HUD hud = null;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -14,10 +14,8 @@ public class Block : MonoBehaviour
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    protected virtual void Effect() {
+
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)

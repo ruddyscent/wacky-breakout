@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class FreezerBlock : StandardBlock
 {
+    float duration;
+    FreezerEffectActivated freezerEvent = new FreezerEffectActivated();
+
     // Start is called before the first frame update
     protected override void  Start()
     {
+        duration = ConfigurationUtils.FreezeDuration;
+        EventManager.AddInvoker(this);
         base.Start();
     }
 
@@ -16,11 +22,15 @@ public class FreezerBlock : StandardBlock
 
     override protected void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ball"))
-        {
-            Ball ball = collision.gameObject.GetComponent<Ball>();
-            ball.SpeedEffect(ConfigurationUtils.FreezingRatio, ConfigurationUtils.FreezingTime);
-        }
+        Effect();
         base.OnCollisionEnter2D(collision);
+    }
+
+    public void AddFreezerEffectListener(UnityAction<float> listener) {
+        freezerEvent.AddListener(listener);
+    }
+
+    protected override void Effect() {
+        freezerEvent.Invoke(duration);
     }
 }

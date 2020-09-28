@@ -19,7 +19,7 @@ public class SpeedupBlock : StandardBlock
         if (collision.gameObject.CompareTag("Ball"))
         {
             Ball ball = collision.gameObject.GetComponent<Ball>();
-            ball.SpeedEffect(ConfigurationUtils.SpeedupRatio, ConfigurationUtils.SpeedupTime);
+            ball.Effect(ConfigurationUtils.SpeedupRatio, ConfigurationUtils.SpeedupTime);
         }
         base.OnCollisionEnter2D(collision);
     }

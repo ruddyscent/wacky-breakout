@@ -47,7 +47,7 @@ public class LevelBuilder : MonoBehaviour
             Instantiate(bonusBlock, position, Quaternion.identity);
         else if (r <= ConfigurationUtils.BonusBlockFrequency + ConfigurationUtils.SpeedupBlockFrequency)
             Instantiate(speedupBlock, position, Quaternion.identity);
-        else if (r <= ConfigurationUtils.BonusBlockFrequency + ConfigurationUtils.SpeedupBlockFrequency + ConfigurationUtils.SpeedupBlockFrequency)
+        else if (r <= ConfigurationUtils.BonusBlockFrequency + ConfigurationUtils.SpeedupBlockFrequency + ConfigurationUtils.FreezerBlockFrequency)
             Instantiate(freezerBlock, position, Quaternion.identity);
         else
             Instantiate(standardBlock, position, Quaternion.identity);
