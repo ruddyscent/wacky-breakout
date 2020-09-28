@@ -12,6 +12,5 @@ public class BonusBlock : Block
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

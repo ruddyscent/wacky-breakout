@@ -3,24 +3,44 @@ using UnityEngine.Events;
 
 public static class EventManager
 {
-    static FreezerBlock invoker;
-    static UnityAction<float> listener;
+    static FreezerBlock freezeInvoker;
+    static UnityAction<float> freezeListener;
+    static SpeedupBlock speedupInvoker;
+    static UnityAction<float, float> speedupListener;
 
-    public static void AddInvoker(FreezerBlock script)
+    public static void AddFreezerInvoker(FreezerBlock script)
     {
-        invoker = script;
-        if (listener != null)
+        freezeInvoker = script;
+        if (freezeListener != null)
         {
-            invoker.AddFreezerEffectListener(listener);
+            freezeInvoker.AddFreezerEffectListener(freezeListener);
         }
     }
 
-    public static void AddListener(UnityAction<float> handler)
+    public static void AddFreezerEffectListener(UnityAction<float> handler)
     {
-        listener = handler;
-        if (invoker != null)
+        freezeListener = handler;
+        if (freezeInvoker != null)
         {
-            invoker.AddFreezerEffectListener(listener);         
+            freezeInvoker.AddFreezerEffectListener(freezeListener);         
+        }
+    }
+
+    public static void AddSpeedupInvoker(SpeedupBlock script)
+    {
+        speedupInvoker = script;
+        if (speedupListener != null)
+        {
+            speedupInvoker.AddSpeedupEffectListener(speedupListener);
+        }
+    }
+
+    public static void AddSpeedupListener(UnityAction<float, float> handler)
+    {
+        speedupListener = handler;
+        if (speedupInvoker != null)
+        {
+            speedupInvoker.AddSpeedupEffectListener(speedupListener);         
         }
     }
 }

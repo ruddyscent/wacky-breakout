@@ -32,7 +32,6 @@ public class LevelBuilder : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {
                 float x = 0;
-                
                 x = (i + 0.5f) * (width + horizontalGap);
                 PlaceBlock(new Vector2(x, y));
                 PlaceBlock(new Vector2(-x, y));

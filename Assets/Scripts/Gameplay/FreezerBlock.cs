@@ -10,7 +10,7 @@ public class FreezerBlock : StandardBlock
     protected override void  Start()
     {
         duration = ConfigurationUtils.FreezeDuration;
-        EventManager.AddInvoker(this);
+        EventManager.AddFreezerInvoker(this);
         base.Start();
     }
 

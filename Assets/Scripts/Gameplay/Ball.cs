@@ -59,10 +59,6 @@ public class Ball : MonoBehaviour
         }
     }
 
-    public virtual void Effect(float seconds) 
-    {
-    }
-
     public virtual void Effect(float ratio, float seconds)
     {
         if (speedEffectRatio != ratio)

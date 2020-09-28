@@ -14,7 +14,7 @@ public class Paddle : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         halfColliderWidth = GetComponent<BoxCollider2D>().size.x / 2;
         freezeTimer = gameObject.AddComponent<Timer>();
-        EventManager.AddListener(Freeze);
+        EventManager.AddFreezerEffectListener(Freeze);
     }
 
     // Update is called once per frame

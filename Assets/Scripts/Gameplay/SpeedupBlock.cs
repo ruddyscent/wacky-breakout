@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class SpeedupBlock : StandardBlock
 {
+    SpeedupEffectActivated speedupEvent = new SpeedupEffectActivated();
+
     // Start is called before the first frame update
-    protected override void  Start()
+    protected override void Start()
     {
+        EventManager.AddSpeedupInvoker(this);
         base.Start();
     }
 
@@ -22,5 +26,9 @@ public class SpeedupBlock : StandardBlock
             ball.Effect(ConfigurationUtils.SpeedupRatio, ConfigurationUtils.SpeedupTime);
         }
         base.OnCollisionEnter2D(collision);
+    }
+
+    public void AddSpeedupEffectListener(UnityAction<float, float> listener) {
+        speedupEvent.AddListener(listener);
     }
 }
