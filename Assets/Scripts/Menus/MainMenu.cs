@@ -23,6 +23,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Gameplay");
     }
 
+    public void HandleHelpButtonOnClickEvent()
+    {
+        SceneManager.LoadScene("Help");
+    }
+
     public void HandleQuitButtonOnClickEvent()
     {
         Application.Quit();
