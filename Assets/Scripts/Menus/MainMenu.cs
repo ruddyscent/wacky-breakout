@@ -5,6 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public static void GoToMenu(MenuName name)
+    {
+        switch (name)
+        {
+            case MenuName.Main:
+                SceneManager.LoadScene("MainMenu");
+                break;
+            case MenuName.Pause:
+                Object.Instantiate(Resources.Load("PauseMenu"));
+                break;
+        }
+    }
+
     public void HandlePlayButtonOnClickEvent()
     {
         SceneManager.LoadScene("Gameplay");

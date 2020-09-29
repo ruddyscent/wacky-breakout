@@ -18,9 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     public void HandleQuitButtonOnClickEvent()
     {
-        Time.timeScale = 1;
-        Destroy(gameObject);
-        MenuManager.GoToMenu(MenuName.Main);
+        Application.Quit();
     }
 
     // Update is called once per frame
