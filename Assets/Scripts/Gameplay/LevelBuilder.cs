@@ -51,4 +51,12 @@ public class LevelBuilder : MonoBehaviour
         else
             Instantiate(standardBlock, position, Quaternion.identity);
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            MenuManager.GoToMenu(MenuName.Pause);
+        }
+    }
 }
