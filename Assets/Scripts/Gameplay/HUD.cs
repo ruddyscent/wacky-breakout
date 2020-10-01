@@ -27,6 +27,7 @@ public class HUD : MonoBehaviour
         ballsLeft = ConfigurationUtils.GivenNumberOfBalls;
         scoreText.text = scorePrefix + score.ToString();
         ballsLeftText.text = ballsLeftPrefix + ballsLeft.ToString();
+        EventManager.AddPointsListener(AddPoints);
     }
 
     public void AddPoints(int points)

@@ -7,6 +7,8 @@ public static class EventManager
     static UnityAction<float> freezeListener;
     static SpeedupBlock speedupInvoker;
     static UnityAction<float, float> speedupListener;
+    static Block addPointsInvoker;
+    static UnityAction<int> addPointsListener;
 
     public static void AddFreezerInvoker(FreezerBlock script)
     {
@@ -41,6 +43,24 @@ public static class EventManager
         if (speedupInvoker != null)
         {
             speedupInvoker.AddSpeedupEffectListener(speedupListener);         
+        }
+    }
+
+    public static void AddPointsInvoker(Block script)
+    {
+        addPointsInvoker = script;
+        if (addPointsListener != null)
+        {
+            addPointsInvoker.AddPointsListener(addPointsListener);
+        }
+    }
+
+    public static void AddPointsListener(UnityAction<int> handler)
+    {
+        addPointsListener = handler;
+        if (addPointsInvoker != null)
+        {
+            addPointsInvoker.AddPointsListener(addPointsListener);
         }
     }
 }

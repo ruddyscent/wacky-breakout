@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Rendering;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Block : MonoBehaviour
 {
     protected int points = 0;
-    HUD hud = null;
+    AddPointsActivated addPointsEvent = new AddPointsActivated();
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
+        EventManager.AddPointsInvoker(this);
     }
 
     protected virtual void Effect() {
@@ -22,8 +20,13 @@ public class Block : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            hud.AddPoints(points);
+            addPointsEvent.Invoke(points);
             Destroy(gameObject);
         }
+    }
+
+    public void AddPointsListener(UnityAction<int> listener)
+    {
+        addPointsEvent.AddListener(listener);
     }
 }
