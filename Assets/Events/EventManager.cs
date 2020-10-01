@@ -9,6 +9,8 @@ public static class EventManager
     static UnityAction<float, float> speedupListener;
     static Block addPointsInvoker;
     static UnityAction<int> addPointsListener;
+    static Ball looseBallInvoker;
+    static UnityAction looseBallListener;
 
     public static void AddFreezerInvoker(FreezerBlock script)
     {
@@ -46,7 +48,7 @@ public static class EventManager
         }
     }
 
-    public static void AddPointsInvoker(Block script)
+    public static void AddAddPointsInvoker(Block script)
     {
         addPointsInvoker = script;
         if (addPointsListener != null)
@@ -55,12 +57,30 @@ public static class EventManager
         }
     }
 
-    public static void AddPointsListener(UnityAction<int> handler)
+    public static void AddAddPointsListener(UnityAction<int> handler)
     {
         addPointsListener = handler;
         if (addPointsInvoker != null)
         {
             addPointsInvoker.AddPointsListener(addPointsListener);
+        }
+    }
+
+    public static void AddLooseBallInvoker(Ball script)
+    {
+        looseBallInvoker = script;
+        if (looseBallListener != null)
+        {
+            looseBallInvoker.AddLooseBallListener(looseBallListener);
+        }
+    }
+
+    public static void AddLooseBallListener(UnityAction handler)
+    {
+        looseBallListener = handler;
+        if (looseBallInvoker != null)
+        {
+            looseBallInvoker.AddLooseBallListener(looseBallListener);
         }
     }
 }

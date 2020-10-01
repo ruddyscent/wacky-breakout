@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Ball : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Ball : MonoBehaviour
     Timer effectTimer = null;
     float speedEffectRatio = 0f;
     float originalSpeed = 0;
+    LooseBallActivated looseBallEvent = new LooseBallActivated();
     #endregion
 
     // Start is called before the first frame update
@@ -20,7 +22,7 @@ public class Ball : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         bc2D = GetComponent<BoxCollider2D>();
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
-
+        EventManager.AddLooseBallInvoker(this);
         pauseTimer = gameObject.AddComponent<Timer>();
         pauseTimer.Duration = ConfigurationUtils.BallPauseTime;
         pauseTimer.Run();
@@ -41,7 +43,7 @@ public class Ball : MonoBehaviour
 
         if (OnBecameInvisible())
         {
-            hud.LooseBall();
+            looseBallEvent.Invoke();
 
             if (hud.BallsLeft > 0)
             {
@@ -87,5 +89,10 @@ public class Ball : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    public void AddLooseBallListener(UnityAction handler)
+    {
+        looseBallEvent.AddListener(handler);
     }
 }

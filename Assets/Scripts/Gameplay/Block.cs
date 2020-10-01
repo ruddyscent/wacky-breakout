@@ -9,7 +9,7 @@ public class Block : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        EventManager.AddPointsInvoker(this);
+        EventManager.AddAddPointsInvoker(this);
     }
 
     protected virtual void Effect() {
