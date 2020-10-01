@@ -25,22 +25,29 @@ public class Ball : MonoBehaviour
         EventManager.AddLooseBallInvoker(this);
         pauseTimer = gameObject.AddComponent<Timer>();
         pauseTimer.Duration = ConfigurationUtils.BallPauseTime;
+        pauseTimer.AddTimerFinishedListener(PauseTimerFinished);
         pauseTimer.Run();
+    }
+
+    void PauseTimerFinished()
+    {
+        Vector2 direction = new Vector2(0, -1);
+        rb2D.velocity = direction;
+        rb2D.AddForce(ConfigurationUtils.BallImpulseForce * direction, ForceMode2D.Impulse);
+        Destroy(pauseTimer);
+        pauseTimer = null;
+        originalSpeed = rb2D.velocity.magnitude;
+    }
+
+    void EffectTimerFinished()
+    {
+        rb2D.velocity = originalSpeed* rb2D.velocity.normalized;
+        effectTimer = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (pauseTimer != null && pauseTimer.Finished)
-        {
-            Vector2 direction = new Vector2(0, -1);
-            rb2D.velocity = direction;
-            rb2D.AddForce(ConfigurationUtils.BallImpulseForce * direction, ForceMode2D.Impulse);
-            Destroy(pauseTimer);
-            pauseTimer = null;
-            originalSpeed = rb2D.velocity.magnitude;
-        }
-
         if (OnBecameInvisible())
         {
             looseBallEvent.Invoke();
@@ -52,12 +59,6 @@ public class Ball : MonoBehaviour
             }
 
             Destroy(gameObject);
-        }
-
-        if (effectTimer != null && effectTimer.Finished)
-        {
-            rb2D.velocity = originalSpeed * rb2D.velocity.normalized;
-            effectTimer = null;
         }
     }
 
@@ -72,6 +73,7 @@ public class Ball : MonoBehaviour
 
         effectTimer = gameObject.AddComponent<Timer>();
         effectTimer.Duration = seconds;
+        effectTimer.AddTimerFinishedListener(EffectTimerFinished);
         effectTimer.Run();
     }
 

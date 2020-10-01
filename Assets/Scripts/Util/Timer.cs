@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// A timer
@@ -18,7 +19,9 @@ public class Timer : MonoBehaviour
 	
 	// support for Finished property
 	bool started = false;
-	
+
+	TimerFinishedActivated timerFinishedEvent = new TimerFinishedActivated();
+
 	#endregion
 	
 	#region Properties
@@ -62,6 +65,10 @@ public class Timer : MonoBehaviour
 
     #region Methods
 
+    void Start()
+    {
+    }
+
     /// <summary>
     /// Update is called once per frame
     /// </summary>
@@ -74,6 +81,7 @@ public class Timer : MonoBehaviour
 			if (elapsedSeconds >= totalSeconds)
             {
 				running = false;
+				timerFinishedEvent.Invoke();
 			}
 		}
 	}
@@ -95,6 +103,11 @@ public class Timer : MonoBehaviour
             elapsedSeconds = 0;
 		}
 	}
+
+	public void AddTimerFinishedListener(UnityAction handler)
+    {
+		timerFinishedEvent.AddListener(handler);
+    }
 	
 	#endregion
 }
