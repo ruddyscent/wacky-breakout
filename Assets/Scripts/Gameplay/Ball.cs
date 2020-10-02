@@ -12,6 +12,8 @@ public class Ball : MonoBehaviour
     float speedEffectRatio = 0f;
     float originalSpeed = 0;
     LooseBallActivated looseBallEvent = new LooseBallActivated();
+
+    SpawnBallActivated spawnBallEvent = new SpawnBallActivated();
     #endregion
 
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class Ball : MonoBehaviour
         bc2D = GetComponent<BoxCollider2D>();
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
         EventManager.AddLooseBallInvoker(this);
+        EventManager.AddSpawnBallInvoker(this);
         pauseTimer = gameObject.AddComponent<Timer>();
         pauseTimer.Duration = ConfigurationUtils.BallPauseTime;
         pauseTimer.AddTimerFinishedListener(PauseTimerFinished);
@@ -50,12 +53,14 @@ public class Ball : MonoBehaviour
     {
         if (OnBecameInvisible())
         {
-            looseBallEvent.Invoke();
-
             if (hud.BallsLeft > 0)
             {
-                Camera m_MainCamera = Camera.main;
-                m_MainCamera.GetComponent<BallSpawner>().SpawnBall();
+                looseBallEvent.Invoke();
+                spawnBallEvent.Invoke();
+            }
+            else
+            {
+
             }
 
             Destroy(gameObject);
@@ -96,5 +101,10 @@ public class Ball : MonoBehaviour
     public void AddLooseBallListener(UnityAction handler)
     {
         looseBallEvent.AddListener(handler);
+    }
+
+    public void AddSpawnBallListener(UnityAction handler)
+    {
+        spawnBallEvent.AddListener(handler);
     }
 }

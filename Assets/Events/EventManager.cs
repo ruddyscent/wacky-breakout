@@ -11,6 +11,26 @@ public static class EventManager
     static UnityAction<int> addPointsListener;
     static Ball looseBallInvoker;
     static UnityAction looseBallListener;
+    static Ball spawnBallInvoker;
+    static UnityAction spawnBallListener;
+
+    public static void AddSpawnBallInvoker(Ball script)
+    {
+        spawnBallInvoker = script;
+        if (spawnBallListener != null)
+        {
+            spawnBallInvoker.AddSpawnBallListener(spawnBallListener);
+        }
+    }
+
+    public static void AddSpawnBallListener(UnityAction handler)
+    {
+        spawnBallListener = handler;
+        if (spawnBallInvoker != null)
+        {
+            spawnBallInvoker.AddSpawnBallListener(spawnBallListener);         
+        }
+    }
 
     public static void AddFreezerInvoker(FreezerBlock script)
     {
