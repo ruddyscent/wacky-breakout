@@ -29,6 +29,7 @@ public class HUD : MonoBehaviour
         ballsLeftText.text = ballsLeftPrefix + ballsLeft.ToString();
         EventManager.AddAddPointsListener(AddPoints);
         EventManager.AddLooseBallListener(ReduceBallsLeft);
+        EventManager.AddBlockDestroyedListener(GameOver);
     }
 
     public void AddPoints(int points)
@@ -41,5 +42,14 @@ public class HUD : MonoBehaviour
     {
         ballsLeft -= 1;
         ballsLeftText.text = ballsLeftPrefix + ballsLeft.ToString();
+    }
+
+    void GameOver()
+    {
+        GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
+        if (blocks.Length == 1)
+        {
+            Object.Instantiate(Resources.Load("GameOverMenu"));
+        }
     }
 }

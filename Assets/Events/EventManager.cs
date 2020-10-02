@@ -15,6 +15,26 @@ public static class EventManager
     static UnityAction spawnBallListener;
     static Ball gameOverInvoker;
     static UnityAction gameOverListener;
+    static Block blockDestroyedInvoker;
+    static UnityAction blockDestroyedListener;
+
+    public static void AddBlockDestroyedInvoker(Block script)
+    {
+        blockDestroyedInvoker = script;
+        if (blockDestroyedListener != null)
+        {
+            blockDestroyedInvoker.AddBlockDestroyedListener(blockDestroyedListener);
+        }
+    }
+
+    public static void AddBlockDestroyedListener(UnityAction handler)
+    {
+        blockDestroyedListener = handler;
+        if (blockDestroyedInvoker != null)
+        {
+            blockDestroyedInvoker.AddBlockDestroyedListener(blockDestroyedListener);         
+        }
+    }
 
     public static void AddGameOverInvoker(Ball script)
     {
