@@ -14,18 +14,19 @@ public class Ball : MonoBehaviour
     LooseBallActivated looseBallEvent = new LooseBallActivated();
 
     SpawnBallActivated spawnBallEvent = new SpawnBallActivated();
+    GameOverActivated gameOverEvent = new GameOverActivated();
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        //float magnitude = ConfigurationUtils.BallImpulseForce;
-        //Vector2 direction = new Vector2(Mathf.Cos(20 * Mathf.PI / 180), Mathf.Sin(20 * Mathf.PI / 180));
         rb2D = GetComponent<Rigidbody2D>();
         bc2D = GetComponent<BoxCollider2D>();
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
         EventManager.AddLooseBallInvoker(this);
         EventManager.AddSpawnBallInvoker(this);
+        EventManager.AddGameOverInvoker(this);
+        EventManager.AddGameOverListener(GameOver);
         pauseTimer = gameObject.AddComponent<Timer>();
         pauseTimer.Duration = ConfigurationUtils.BallPauseTime;
         pauseTimer.AddTimerFinishedListener(PauseTimerFinished);
@@ -60,11 +61,16 @@ public class Ball : MonoBehaviour
             }
             else
             {
-
+                gameOverEvent.Invoke();
             }
 
             Destroy(gameObject);
         }
+    }
+
+    void GameOver()
+    {
+        MenuManager.GoToMenu(MenuName.GameOver);
     }
 
     public virtual void Effect(float ratio, float seconds)
@@ -106,5 +112,10 @@ public class Ball : MonoBehaviour
     public void AddSpawnBallListener(UnityAction handler)
     {
         spawnBallEvent.AddListener(handler);
+    }
+
+    public void AddGameOverListener(UnityAction handler)
+    {
+        gameOverEvent.AddListener(handler);
     }
 }

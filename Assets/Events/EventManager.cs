@@ -13,6 +13,26 @@ public static class EventManager
     static UnityAction looseBallListener;
     static Ball spawnBallInvoker;
     static UnityAction spawnBallListener;
+    static Ball gameOverInvoker;
+    static UnityAction gameOverListener;
+
+    public static void AddGameOverInvoker(Ball script)
+    {
+        gameOverInvoker = script;
+        if (gameOverListener != null)
+        {
+            gameOverInvoker.AddGameOverListener(gameOverListener);
+        }
+    }
+
+    public static void AddGameOverListener(UnityAction handler)
+    {
+        gameOverListener = handler;
+        if (gameOverInvoker != null)
+        {
+            gameOverInvoker.AddGameOverListener(gameOverListener);         
+        }
+    }
 
     public static void AddSpawnBallInvoker(Ball script)
     {

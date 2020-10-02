@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class MenuManager
@@ -14,6 +12,9 @@ public static class MenuManager
                 break;
             case MenuName.Pause:
                 Object.Instantiate(Resources.Load("PauseMenu"));
+                break;
+            case MenuName.GameOver:
+                Object.Instantiate(Resources.Load("GameOverMenu"));
                 break;
         }
     }
