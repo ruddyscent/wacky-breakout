@@ -22,6 +22,7 @@ public class SpeedupBlock : StandardBlock
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            AudioManager.Play(AudioClipName.SpeedupEffectActivated);
             Ball ball = collision.gameObject.GetComponent<Ball>();
             ball.Effect(ConfigurationUtils.SpeedupRatio, ConfigurationUtils.SpeedupTime);
         }

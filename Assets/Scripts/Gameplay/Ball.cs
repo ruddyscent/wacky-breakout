@@ -11,8 +11,8 @@ public class Ball : MonoBehaviour
     Timer effectTimer = null;
     float speedEffectRatio = 0f;
     float originalSpeed = 0;
-    LooseBallActivated looseBallEvent = new LooseBallActivated();
 
+    LooseBallActivated looseBallEvent = new LooseBallActivated();
     SpawnBallActivated spawnBallEvent = new SpawnBallActivated();
     GameOverActivated gameOverEvent = new GameOverActivated();
     #endregion
@@ -23,10 +23,13 @@ public class Ball : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         bc2D = GetComponent<BoxCollider2D>();
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
+        
         EventManager.AddLooseBallInvoker(this);
         EventManager.AddSpawnBallInvoker(this);
         EventManager.AddGameOverInvoker(this);
         EventManager.AddGameOverListener(GameOver);
+
+        // A new ball is paused for BallPauseTime seconds.
         pauseTimer = gameObject.AddComponent<Timer>();
         pauseTimer.Duration = ConfigurationUtils.BallPauseTime;
         pauseTimer.AddTimerFinishedListener(PauseTimerFinished);
@@ -45,7 +48,8 @@ public class Ball : MonoBehaviour
 
     void EffectTimerFinished()
     {
-        rb2D.velocity = originalSpeed* rb2D.velocity.normalized;
+        AudioManager.Play(AudioClipName.SpeedupEffectDeactivated);
+        rb2D.velocity = originalSpeed * rb2D.velocity.normalized;
         effectTimer = null;
     }
 
@@ -56,6 +60,7 @@ public class Ball : MonoBehaviour
         {
             if (hud.BallsLeft > 0)
             {
+                AudioManager.Play(AudioClipName.BallLost);
                 looseBallEvent.Invoke();
                 spawnBallEvent.Invoke();
             }
@@ -96,6 +101,7 @@ public class Ball : MonoBehaviour
 
     bool OnBecameInvisible()
     {
+        // AudioManager.Play(AudioClipName.BallLost);
         Vector2 position = gameObject.transform.position;
         float radius = bc2D.size.y / 2f;
         if (position.y < ScreenUtils.ScreenBottom - radius)
@@ -103,6 +109,16 @@ public class Ball : MonoBehaviour
         else
             return false;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        AudioManager.Play(AudioClipName.BallCollision);
+    }
+
+    //void OnTriggerEnter(Collider collision)
+    //{
+    //    AudioManager.Play(AudioClipName.BallCollision);
+    //}
 
     public void AddLooseBallListener(UnityAction handler)
     {

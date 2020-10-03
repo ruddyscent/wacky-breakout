@@ -3,25 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
+        AudioManager.Play(AudioClipName.GameLost);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     public void HandleQuitButtonOnClickEvent()
     {
+        AudioManager.Play(AudioClipName.MenuButtonClick);
         Application.Quit();
     }
 
     public void HandleBackButtonOnClickEvent()
     {
+        AudioManager.Play(AudioClipName.MenuButtonClick);
         SceneManager.LoadScene("MainMenu");
         Destroy(this);
     }

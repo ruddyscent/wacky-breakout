@@ -31,6 +31,7 @@ public class FreezerBlock : StandardBlock
     }
 
     protected override void Effect() {
+        AudioManager.Play(AudioClipName.FreezerEffectActivated);
         freezerEvent.Invoke(duration);
     }
 }

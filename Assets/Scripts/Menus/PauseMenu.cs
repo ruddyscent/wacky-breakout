@@ -11,19 +11,15 @@ public class PauseMenu : MonoBehaviour
 
     public void HandleResumeButtonOnClickEvent()
     {
+        AudioManager.Play(AudioClipName.MenuButtonClick);
         Time.timeScale = 1;
         Destroy(gameObject);
     }
 
     public void HandleQuitButtonOnClickEvent()
     {
+        AudioManager.Play(AudioClipName.MenuButtonClick);
         SceneManager.LoadScene("MainMenu");
         Destroy(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

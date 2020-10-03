@@ -20,16 +20,19 @@ public class MainMenu : MonoBehaviour
 
     public void HandlePlayButtonOnClickEvent()
     {
+        AudioManager.Play(AudioClipName.MenuButtonClick);
         SceneManager.LoadScene("Gameplay");
     }
 
     public void HandleHelpButtonOnClickEvent()
     {
+        AudioManager.Play(AudioClipName.MenuButtonClick);
         SceneManager.LoadScene("Help");
     }
 
     public void HandleQuitButtonOnClickEvent()
     {
+        AudioManager.Play(AudioClipName.MenuButtonClick);
         Application.Quit();
     }
 

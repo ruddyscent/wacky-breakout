@@ -12,6 +12,7 @@ public class BallSpawner : MonoBehaviour
     
     void SpawnBall()
     {
+        AudioManager.Play(AudioClipName.BallSpawn);
         Instantiate(prefabBall, new Vector3(0, -1, 0), Quaternion.identity);
     }
 }

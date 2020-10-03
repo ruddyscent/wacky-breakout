@@ -800,6 +800,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6612663818137090414, guid: b800985719f35cd4695ab80a91f34536,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6612663818137090414, guid: b800985719f35cd4695ab80a91f34536,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6612663818137090414, guid: b800985719f35cd4695ab80a91f34536,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6612663818137090414, guid: b800985719f35cd4695ab80a91f34536,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4732274526432649951, guid: b800985719f35cd4695ab80a91f34536, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b800985719f35cd4695ab80a91f34536, type: 3}

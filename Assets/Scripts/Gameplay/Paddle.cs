@@ -13,7 +13,6 @@ public class Paddle : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         halfColliderWidth = GetComponent<BoxCollider2D>().size.x / 2;
-        freezeTimer = gameObject.AddComponent<Timer>();
         EventManager.AddFreezerEffectListener(Freeze);
     }
 
@@ -24,14 +23,18 @@ public class Paddle : MonoBehaviour
     }
 
     public void Freeze(float duration) {
+        if (freezeTimer == null)
+        {
+            freezeTimer = gameObject.AddComponent<Timer>();
+        }
         freezeTimer.Duration = duration;
         freezeTimer.Run();
     }
 
     void FixedUpdate()
     {
-        if (freezeTimer.Running) {}
-        else {
+        if (freezeTimer == null)
+        {
             float input = Input.GetAxis("Control");
             Vector2 direction = new Vector2(input, 0);
             float speed = ConfigurationUtils.PaddleMoveUnitsPerSecond;
@@ -39,6 +42,14 @@ public class Paddle : MonoBehaviour
             Vector2 new_position = rb2D.position + velocity * Time.fixedDeltaTime;
             new_position.x = CalculateClampedX(new_position.x);
             rb2D.MovePosition(new_position);
+        }
+        else if (freezeTimer.Finished)
+        {
+            freezeTimer = null;
+            AudioManager.Play(AudioClipName.FreezerEffectDeactivated);
+        }
+        else
+        {
         }
     }
 
